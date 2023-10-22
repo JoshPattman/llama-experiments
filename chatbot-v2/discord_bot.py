@@ -52,7 +52,7 @@ def get_reply(conversation) -> str:
     prompt = formatting.get_chat_prompt([USER_NAME, BOT_NAME])
     model_input = formatting.tokenize_with_turn_trucation(tokenizer, prompt, conversation, next_turn=BOT_NAME, for_inference=True)
     with torch.no_grad():
-        generated = model.generate(**model_input, max_new_tokens=50, num_beams=1, do_sample=True, temperature=1.2)[0]
+        generated = model.generate(**model_input, max_new_tokens=75, num_beams=2, do_sample=True, temperature=1.5)[0]
         model_output = tokenizer.decode(generated)
     # Parse the model output to get the speaker and what they said
         turns = model_output.split("</s>")
